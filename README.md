@@ -1,2 +1,11 @@
-# Visithoughts
+Hi! I'm Gene, I created this project in partial fulfillment of the requirements for the degree of Bachelor of Science in Computer Science.
+
+# About Visithoughts
 Visithoughts: A Web Application for Customers Feedback with Sentiment Analysis of CvSU-CCAT Campus
+An undergraduate thesis presented to the faculty of the Department of Computer Studies at the Cavite State University-CCAT Campus, Rosario, Cavite.
+
+Abstract.
+The VisiThoughts web application was developed for the Cavite State University-CCAT Campus (CvSU-CCAT Campus) to analyze customer comments using sentiment analysis. The application proved the efficient implementation of the specialized Natural Language Toolkit (NLTK) algorithm. This advanced system was a great help to visitors, department heads, and administrators because it made it easy to collect detailed input from several offices on the CvSU-CCAT Campus. The research spanned from June 2023 to January 2024 at the CvSU-CCAT Campus. It was divided into four phases: 1) identified the essential requirements and functionalities of the web application through the following: a) conducted a thorough analysis of the feedback collection method and analysis needs of various offices and units within Cavite State University-CCAT Campus; b) identified the essential features and functionalities that should be incorporated into the VisiThoughts web application to meet the identified needs; and c) defined the user interface design and user experience guidelines to ensure a user-friendly and accessible platform; 2) developed the VisiThoughts web application using Lexicon-based approach; 3) evaluated the application in order to determine if it complied with the modified ISO-IEC 25010 standards; and 4) implemented the web application in CvSU-CCAT Campus. The evaluation of the system involved 31 participants, including five (5) IT experts and twenty-six end users. The results of the assessment revealed an impressive average score of 4.88 from the IT experts, characterized as ‘Excellent’, and an average score of 4.69 from the end users, also interpreted as ‘Excellent’.
+
+
+For more details about the project you can read the manuscript provided here: https://github.com/elgene1515/Visithoughts/blob/ebea1bcc834cbab8b0f5a1e68a87ea9a3afa2010/VISITHOUGHTS%20FINAL%20VERSION%20OF%20MANUSCRIPT%20WITH%20SOURCE%20CODE.pdf
