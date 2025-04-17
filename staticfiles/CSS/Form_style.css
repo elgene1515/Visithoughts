@@ -1,0 +1,124 @@
+    body{
+        background-color: green;
+    }
+    .container {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+    .form-label {
+        font-weight: bold;
+    }
+
+    .form-control {
+        margin-bottom: 15px;
+    }
+
+    .form-select {
+        margin-bottom: 15px;
+    }
+
+    .rating {
+        display: flex;
+        align-items: center;
+    }
+
+    .rating input {
+        flex-grow: 1;
+        margin: 0 10px;
+    }
+
+    /* Custom Button Style */
+    .btn-custom {
+        background-color: rgb(0, 165, 0);
+        color: #fff; /* White text color */
+        font-size: 1.2em; /* Adjust font size */
+        padding: 10px 20px; /* Adjust padding */
+        border-radius: 10px;
+        box-shadow: none;
+    }
+    .btn-custom:hover {
+        background-color: rgb(90, 199, 90);
+        color: #fff; /* White text color */
+        font-size: 1.2em; /* Adjust font size */
+        padding: 10px 20px; /* Adjust padding */
+        border-radius: 10px;
+        box-shadow: none;
+    }
+
+    /* Additional Custom Styles */
+    .subtext, .subtext1 {
+        font-size: 1.2em;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .paragraph {
+        font-size: 0.9em;
+    }
+
+    .line {
+        border-top: 1px solid #ccc;
+        margin: 20px 0;
+    }
+    .rating-text {
+        margin-bottom: 5px;
+    }
+    .rating-text {
+        margin-bottom: 5px;
+        font-size: 0.9em; 
+    }
+
+    #Rating1,#Rating2,#Rating3,#Rating4,#Rating5,#Rating6 {
+        /* Your custom CSS styles here */
+        width: 100%; /* Set the width to 100% */
+        height: 10px;
+        /* Add more styles as needed */
+    }
+    /* Style the thumb */
+    input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        background: #fff;
+        border: 2px solid #333;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.2s;
+    }
+    /* Hover effect for the thumb */
+    input[type="range"]::-webkit-slider-thumb:hover {
+        border: 2px solid #fff;
+        background: #333;
+        transform: scale(1.2); /* Make the thumb slightly bigger on hover */
+    }
+    .comment-input {
+        width: 100%;
+        height: 100px;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        .container {
+            max-width: 100%;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .container {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .rating-text, .subtext, .subtext1, .paragraph {
+            font-size: 1em;
+        }
+        .comment-input {
+            height: 150px;
+        }
+    }
+

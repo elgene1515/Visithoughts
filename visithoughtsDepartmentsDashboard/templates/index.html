@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+  
+{% block title %}Add New Staff{% endblock title %}
+  
+{% block content %}
+<div class="col-md-12-add">    
+    <form method="POST" class="post-form" action="/departmentsdashboard/addnew">  
+    {% csrf_token %}  
+    <div class="container">  
+        <div class="col-12">  
+        <h3>Enter Staff Details</h3>  
+        </div>    
+     
+        <div class="mb-3">
+            <label for="fullName" class="form-label">Enter Full Name:</label>
+            {{ form.name }}
+        </div>
+        <div class="mb-3">
+            <label for="concernedDepartment" class="form-label">Select Department:</label>
+            {{ form.department }}
+        </div>
+            
+        <div class="mb-3 button-container">
+            <span class="btn-add-new-2">
+                <a href="{% url 'show' %}" style="font-weight: normal; font-family:'Times New Roman', Times, serif; font-size: 15px;">Back</a>
+            </span>
+            <button type="submit" class="btn btn-success btn-lg" style="font-weight: normal; font-family:'Times New Roman', Times, serif; font-size: 15px;">Submit</button>
+        </div>
+    </div>  
+    </form>  
+</div> 
+{% endblock content %} 

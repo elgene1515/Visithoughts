@@ -1,0 +1,456 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+*{
+    box-sizing: border-box;
+}
+.color{
+    background: linear-gradient(to right, #e1e0ff, #d7fadd);
+}
+
+body{
+    background: #191919;
+    background: green;
+    user-select: none;
+    letter-spacing: 3px;
+    color: #b9b9b9;
+    overflow: hidden;
+}
+p{
+    padding-bottom: 15px;
+}
+p:last-of-type{
+    padding-bottom: 0;
+}
+
+
+
+.wrapper {
+    position: absolute;
+    left: 20%;
+    top: 30px;
+    width: 100%;
+    height: 100vh; /* Set the height to cover the full viewport height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/* dev elgene this is logo*/
+.background-image {
+    width: auto;
+    height: 700px;
+    margin: 25px 10px 10px 10px; /* top right bottom left */
+    position: absolute;
+    z-index: -1;
+    left: 100px;
+}
+.logo {
+    width: 100px; /* Adjust the size as needed */
+    position: absolute;
+    top: 200px; /* Adjust the top position as needed */
+    left: 70%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    z-index: 2;
+}
+.button{
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    outline: none;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    border-radius: 2px;
+    transition: all 0.5s ease;
+    font-weight: 600;
+    font-size: 14px;
+    /* height: 250px;
+    width: 500px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid rgba(0,0,0,0.06); */
+    /* border-radius: 0px;
+    box-shadow: 0 0 0 white, 0 0 0 white; */
+    /* padding: 0;
+    margin: 0; */
+}
+.button-text, .button-text p {
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    background: -webkit-linear-gradient(to right, #FFD700, #4cfa63); /* For Safari */
+    background: linear-gradient(to right, #FFD700, #4cfa63); /* Standard syntax */
+    -webkit-background-clip: text;
+    background-clip: text; /* Standard syntax */
+    color: transparent; /* This is more standard */
+    font-size: 60px;
+    text-align: center;
+}
+.button-text p {
+    font-size: 25px;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    color: white;
+}
+.button-text h1{
+    padding-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 50px;
+    color: white;
+}
+.button:hover .button-text p,
+.button:hover .button-text h1 {
+    color: transparent;
+}
+.button-style2 {
+    background-color: #FFD700; /* Change the background color on hover */
+    color: #ffffff; /* Set the text color */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Add some padding */
+    font-size: 16px; /* Set the font size */
+    cursor: pointer; /* Add a pointer cursor on hover */
+    border: 1px solid rgba(0,0,0,1);
+    border-radius: 5px; /* Add some border radius for rounded corners */
+    transition: background-color 0.3s; /* Add a smooth transition for background color */
+    text-decoration: none;
+}
+.button-style2:hover {
+    background-color: #ffffff; /* Set the background color */
+    color: #FFD700; /* Set the text color */
+}
+.button-style2 p {
+    margin: 0; /* Remove paragraph margin */
+}
+
+.button-circle{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFD700;
+    transition: all 0.5s ease;
+}
+
+.button-circle2{
+    top: auto;
+    bottom: 0;
+}
+
+.button-circle3{
+    left: auto;
+    right: 0;
+    box-shadow: 0 0 10px #4cfa63, 0 0 20px #4cfa63, 0 0 30px #4cfa63;
+}
+
+.button-circle4{
+    left: auto;
+    top: auto;
+    bottom: 0;
+    right: 0;
+    box-shadow: 0 0 10px #4cfa63, 0 0 20px #4cfa63, 0 0 30px #4cfa63;
+}
+
+/* .button:hover{
+    box-shadow: -15px 0 70px -15px #FFD700, 15px 0 70px -15px #4cfa63;
+    border-radius: 30px
+} */
+/* 
+.button:hover .button-circle1{
+    transform: translate(-15px, -15px) scale(0);
+}
+
+.button:hover .button-circle2{
+    transform: translate(-15px, 15px) scale(0);
+}
+
+.button:hover .button-circle3{
+    transform: translate(15px, -15px) scale(0);
+}
+
+.button:hover .button-circle4{
+    transform: translate(15px, 15px) scale(0);
+}
+
+.button:hover .button-circle{
+    box-shadow: none;
+} */
+
+.popup{
+    opacity: 0;
+    visibility: hidden;
+    height: 400px;
+    width: 400px;
+    flex-shrink: 0;
+    border-radius: 3px;
+    position: relative;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease
+}
+
+.popup-inside{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 50%;
+    box-shadow: 0 0 0 black;
+    transition:
+            box-shadow 0.5s ease 0.7s,
+            border-radius 0.35s ease 0.7s;
+}
+
+.backgrounds{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+
+}
+
+.background{
+    --offset: 0;
+    position: absolute;
+    left: var(--offset);
+    right: var(--offset);
+    bottom: var(--offset);
+    top: var(--offset);
+    background: linear-gradient(to right, #ffea00, #4cfa63);
+    transform: scale(0);
+    transition: all 0.5s ease 0s;
+    border-radius: 50%;
+
+}
+
+.background2{
+    --offset: 10%;
+    position: absolute;
+    left: var(--offset);
+    right: var(--offset);
+    bottom: var(--offset);
+    top: var(--offset);
+    background: linear-gradient(to right, #ffdd00, #69fa7f);
+    transform: scale(0);
+    transition: all 0.5s ease 0.1s;
+}
+
+.background3{
+    --offset: 20%;
+    position: absolute;
+    left: var(--offset);
+    right: var(--offset);
+    bottom: var(--offset);
+    top: var(--offset);
+    background: linear-gradient(to right, #ffd000, #85fa99);
+    z-index: 2;
+    transition: all 0.5s ease 0.2s;
+    border-radius: 20px;
+}
+
+.background4{
+    --offset: 30%;
+    position: absolute;
+    left: var(--offset);
+    right: var(--offset);
+    bottom: var(--offset);
+    top: var(--offset);
+    background: linear-gradient(to right, #ffc300, #a7fab7);
+    z-index: 3;
+    transition: all 0.5s ease 0.3s;
+    border-radius: 20px;
+}
+
+.background5{
+    --offset: 40%;
+    position: absolute;
+    left: var(--offset);
+    right: var(--offset);
+    bottom: var(--offset);
+    top: var(--offset);
+    background: linear-gradient(to right, #ffb700, #c3fad1);
+    z-index: 4;
+    transition: all 0.5s ease 0.4s;
+    border-radius: 20px;
+}
+
+.background6{
+    --offset: 40%;
+    position: absolute;
+    left: var(--offset);
+    right: var(--offset);
+    bottom: var(--offset);
+    top: var(--offset);
+    background: white;
+    z-index: 5;
+    transition: all 0.8s ease 0.4s;
+    border-radius: 20px;
+}
+
+.content{
+    --offset: 0;
+    position: absolute;
+    left: var(--offset);
+    right: var(--offset);
+    bottom: var(--offset);
+    top: var(--offset);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.35s ease 0.75s;
+    z-index: 10;
+    border-radius: 20px;
+}
+/* Your existing styles */
+body.active .content{
+    opacity: 1;
+    transform: none;
+}
+
+body.active .popup{
+    opacity: 1;
+    visibility: visible;
+    text-align: center;
+    width: 700px;
+    height: 500px;
+}
+
+body.active .popup-inside{
+    border-radius: 30px;
+    /* box-shadow: -50px 0 200px -50px #FFD700, 50px 0 200px -50px #4cfa63; <dev elgene> deleted for some sort of happiness*/ 
+}
+
+body.active .background{
+    transform: scale(1);
+}
+
+body.active .background6{
+    transform: scale(8);
+}
+
+
+/* button style ng proceed */
+.button-style {
+    background-color: #FFD700; /* Set the background color */
+    color: #ffffff; /* Set the text color */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Add some padding */
+    font-size: 16px; /* Set the font size */
+    cursor: pointer; /* Add a pointer cursor on hover */
+    border: 1px solid rgba(0,0,0,1);
+    border-radius: 5px; /* Add some border radius for rounded corners */
+    transition: background-color 0.3s; /* Add a smooth transition for background color */
+    text-decoration: none;
+}
+
+.button-style:hover {
+    background-color: green; /* Change the background color on hover */
+}
+.content-wrapper button.button-style {
+    display: block; /* Make it a block element */
+    margin: 0 auto; /* Center the button */
+}
+.content-wrapper{
+    margin: 10px;
+    color: black;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+    .logo {
+        width: 100px; /* Adjust the size as needed */
+        position: absolute;
+        top: 20%; /* Center vertically */
+        left: 50%; /* Center horizontally */
+        transform: translate(-50%, -50%);
+        z-index: -1;
+    }
+    .background-image {
+        width: 250px;
+        height: 400px;
+        position: absolute;
+        top: 70%; /* Center vertically */
+        left: 47%; /* Center horizontally */
+        transform: translate(-50%, -50%);
+        z-index: -1;
+    }
+    .wrapper {
+        height: 100vh; /* Set the height to cover the full viewport height */
+        overflow: hidden; /* Remove overflow to prevent scrollbars */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        left: 0%;
+        top: -50px;
+    }    
+    .button {
+        cursor: pointer;
+        position: relative;
+        width: 80%; /* Adjust the width as needed for smaller screens */
+        height: 50px; /* Allow height to adjust based on content <deve elgene> */
+        overflow: hidden;
+        left: 0;
+        z-index: 1;
+    }
+    .button-text p {
+        font-size: 14px; /* Adjust font size for smaller screens */
+        font-weight: bold;
+    }
+    .button-text h1 {
+        font-size: 30px; /* Adjust font size for smaller screens */
+        padding-bottom: 10px; /* Update padding for better spacing */
+    }
+    /* Add more responsive adjustments as needed */
+    .popup {
+        max-height: 100%; /* Set height to cover the full viewport height */
+        max-width: 100%; /* Set max-width to ensure the popup fits on smaller screens */
+        bottom: 70px;
+        left: 0; /* Align to the left of the viewport */
+        right: 0; /* Align to the right of the viewport */
+    }
+    .popup-inside {
+        height: 130%; /* Set height to cover the full viewport height */
+        overflow: hidden;
+        margin: 10px; /* Add 10px margin around the element */
+        width: 95%;
+    }
+    .backgrounds {
+        height: 100%; /* Set height to cover the full viewport height */
+    }
+    .content-wrapper {
+        margin: 10px; /* Add margin for better spacing */
+        text-align: center; /* Center text within the content wrapper */
+        padding: 5px;
+    }
+    h2 {
+        font-size: 24px; /* Adjust font size as needed */
+        margin-top: 140px;
+        padding: 5px;
+    }
+    p {
+        font-size: 14px; /* Adjust font size as needed */
+        margin-bottom: 0px;
+    }
+    .second-part-paragraph {
+        text-align: center; /* Center the text */
+        margin-bottom: 20px;
+    }
+    .button-style {
+        font-size: 16px; /* Adjust font size as needed */
+    }
+}

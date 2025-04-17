@@ -1,0 +1,311 @@
+body {
+    background-color: #f6fdfb;
+}
+.main-container {
+    background-color: green;
+    margin: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+.center-text h1{
+    text-align: center;
+    font-size: 60px;
+    color: gold;
+    font-weight: bold;
+    margin: 20px 20px 65px 20px;
+    text-shadow:  2px 2px rgb(165, 140, 0);
+}
+.col-md-12 {
+    max-width: 95%;
+    margin: 0 auto; /* This centers the content horizontally */
+    background-color: white;
+    padding: 1px 20px 20px 20px;
+    border-radius: 10px;
+}
+/* Style the "Add New Record" button */
+.button-container {
+    display: flex;
+    justify-content: flex-start; /* Align items to the start (left) */
+    align-items: center;
+    margin-top: 0px; /* Adjust as needed */
+    margin-bottom: 10px;
+}
+.btn-add-new a {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 0 10px 20px 10px; /* Adjust as needed for spacing between buttons */
+    text-decoration: none;
+    background-color: green;
+    color: #fff;
+    border: 1px solid green;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-add-new a:hover {
+    background-color: #27ae60; /* Change background color on hover */
+    color: #fff; /* Change text color on hover */
+}
+/* ...
+
+/* Style the edit button */
+.btn-primary {
+    display: inline-block; /* Make links inline-block elements */
+    padding: 10px 20px; /* Add padding to create button-like spacing */
+    margin: 10px 0; /* Add spacing between the buttons vertically */
+    text-align: center; /* Center text horizontally within the button */
+    text-decoration: none; /* Remove the underline */
+    background-color: green; /* Green */
+    color: #fff;
+    border: none; /* Remove the border */
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: rgb(90, 199, 90); /* Darker Green on hover */
+}
+
+/* Style the delete button */
+.btn-danger {
+    display: inline-block; /* Make links inline-block elements */
+    padding: 10px 20px; /* Add padding to create button-like spacing */
+    margin: 10px 0; /* Add spacing between the buttons vertically */
+    text-align: center; /* Center text horizontally within the button */
+    text-decoration: none; /* Remove the underline */
+    background-color: red; /* Red */
+    color: #fff;
+    border: none; /* Remove the border */
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.btn-danger:hover {
+    background-color: #ff3333; /* Brighter Red on hover */
+}
+
+/* Limit the table width to 80% */
+#bootstrapdatatable {
+    width: 80%;
+    margin: 0 auto; /* Center the table horizontally */
+}
+#bootstrapdatatable thead th:nth-child(odd) {
+    background-color: green; /* Green */
+    color: #fff;
+}
+
+#bootstrapdatatable thead th:nth-child(even) {
+    background-color: rgb(90, 199, 90); /* #27ae60 (Darker Green) */
+    color: #fff;
+}
+
+/* Style the table body with alternating colors */
+#bootstrapdatatable tbody tr:nth-child(odd) {
+    background-color: #f7f7f7; /* Light Grey */
+}
+
+#bootstrapdatatable tbody tr:nth-child(even) {
+    background-color: #fff; /* White */
+}
+
+
+
+
+
+
+
+/* Style for the post-form class */
+/* for staff <dev elgene> */
+.post-form {
+    background-color: #f5f5f5; /* Background color */
+    padding: 50px; /* Padding around the form */
+    border: 1px solid #ddd; /* Border around the form */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Box shadow for a subtle elevation effect */
+    max-width: 15%; /* Maximum width of the form */
+    margin: 0 auto; /* Center the form horizontally on the page */
+    position: relative;
+    font-weight: bold;
+    text-align: center; /* Center-align the content inside the form */
+    margin-bottom: 10vh;
+/* for department <dev elgene> */
+}.post-form2 {
+    background-color: #f5f5f5; /* Background color */
+    padding: 50px; /* Padding around the form */
+    border: 1px solid #ddd; /* Border around the form */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Box shadow for a subtle elevation effect */
+    max-width: 15%; /* Maximum width of the form */
+    margin: 0 auto; /* Center the form horizontally on the page */
+    position: relative;
+    font-weight: bold;
+    text-align: center; /* Center-align the content inside the form */
+    margin-bottom: 29vh;
+}
+.col-12, .mb-3{
+    position: relative;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.post-form label {
+    display: block; /* Display labels as blocks to place them on top of the input fields */
+    font-weight: bold;
+}
+
+.post-form input[type="text"],
+.post-form textarea,
+.post-form select {
+    max-width: 100%; /* Make form controls expand to the full width of the form */
+    padding: 10px; /* Padding inside form controls */
+    margin-bottom: 10px; /* Spacing between form fields */
+    border: 1px solid #ccc; /* Border around form controls */
+    border-radius: 3px; /* Rounded corners for form controls */
+}
+
+.post-form button {
+    background-color: green; /* Button background color */
+    color: #fff; /* Text color of the button */
+    padding: 10px 20px; /* Padding inside the button */
+    border: none; /* Remove button border */
+    border-radius: 3px; /* Rounded corners for the button */
+    cursor: pointer; /* Display a pointer cursor on hover */
+}
+.post-form2 button {
+    background-color: green; /* Button background color */
+    color: #fff; /* Text color of the button */
+    padding: 10px 20px; /* Padding inside the button */
+    border: none; /* Remove button border */
+    border-radius: 3px; /* Rounded corners for the button */
+    cursor: pointer; /* Display a pointer cursor on hover */
+}
+
+/* .post-form button:hover {
+    background-color: rgb(90, 199, 90); 
+}
+.post-form2 button:hover {
+    background-color: rgb(90, 199, 90); 
+} */
+.btn-add-new-2 a {
+    text-decoration: none; /* Remove the underline from the link */
+    background-color: green;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: normal; /* Set the font weight to normal */
+}
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 0;
+}
+
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    color: white !important;
+    border: 1px solid #006400; /* Dark green */
+    background-color: #006400; /* Dark green */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #585858), color-stop(100%, #111));
+    background: -webkit-linear-gradient(top, #006400 0%, #003300 100%);
+    background: -moz-linear-gradient(top, #006400 0%, #003300 100%);
+    background: -ms-linear-gradient(top, #006400 0%, #003300 100%);
+    background: -o-linear-gradient(top, #006400 0%, #003300 100%);
+    background: linear-gradient(to bottom, #006400 0%, #003300 100%);
+}
+
+/* Add this to your existing CSS file (crud.css) */
+/* Styles extracted from Bootstrap 4.5.2 CSS file for modal */
+
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    overflow: hidden;
+    outline: 0;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-dialog {
+    position: relative;
+    width: 80%; /* Adjust the width as needed */
+    max-width: none; /* Remove the max-width restriction */
+    top: 35%;
+    left: 30%;
+}
+
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.3rem;
+    outline: 0;
+}
+
+.modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #e9ecef;
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+}
+
+.modal-title {
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+.modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 15px;
+}
+
+.modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 15px;
+    border-top: 1px solid #e9ecef;
+    border-bottom-right-radius: 0.3rem;
+    border-bottom-left-radius: 0.3rem;
+}
+
+/* Customize the cancel button */
+.btn-secondary {
+    display: inline-block; /* Make links inline-block elements */
+    padding: 10px 20px; /* Add padding to create button-like spacing */
+    margin: 10px 20px; /* Add spacing between the buttons vertically */
+    text-align: center; /* Center text horizontally within the button */
+    text-decoration: none; /* Remove the underline */
+    background-color: green; /* Green */
+    color: #fff;
+    border: none; /* Remove the border */
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+/* Customize the delete/confirm button */
+.btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+
+

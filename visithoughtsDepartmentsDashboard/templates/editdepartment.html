@@ -1,0 +1,34 @@
+{% extends "basedepartment.html" %}
+  
+{% block title %}Edit Department{% endblock title %}
+  
+{% block content %}
+<div class="col-md-12-edit">
+    <form method="POST" class="post-form2" action="{% url 'updatedepartment' department.id %}">  
+        {% csrf_token %}  
+    <div class="container">   
+        <div class="col-12">  
+            <h1>Update Details</h1>  
+        </div> 
+        <div class="mb-3"> 
+            <label>Department Name:</label>  
+            <input type="text" class="form-control" name="name" id="id_name" required maxlength="100" value="{{ department.name }}" />  
+        </div> 
+        {% if messages %}
+            <div class="mb-3">
+                {% for message in messages %}
+                    <div class="alert alert-danger" role="alert" style="color: red;">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="mb-3 button-container">
+            <span class="btn-add-new-2">
+                <a href="{% url 'showdepartment' %}" style="font-weight: normal; font-family:'Times New Roman', Times, serif; font-size: 15px;">Back</a>
+            </span>
+            <button type="submit" class="btn btn-success btn-lg" style="font-weight: normal; font-family:'Times New Roman', Times, serif; font-size: 15px;">Update</button>
+        </div>        
+    </div>  
+    </form>  
+{% endblock content %}

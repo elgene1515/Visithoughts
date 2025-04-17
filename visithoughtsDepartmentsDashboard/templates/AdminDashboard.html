@@ -1,0 +1,631 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+
+    <!-- Boothstrap Online  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <!-- Link para lumabas yung pie chart online -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- pang icon ng account online -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- for history tools <dev elgene> -->
+    <link rel = "stylesheet" type = "text/css" href = "https://cdn.datatables.net/1.12.0/css/jquery.dataTables.min.css"/>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!-- Add this in the head section of your HTML template <dev elgene> for the graphofeachdepartmentrecordcount-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Link of CSS and JS -->
+    <link rel="stylesheet" href="{% static 'CSS/AdminDashboard.css' %}">
+    <script src="{% static 'JS\AdminDashboard.js' %}"></script>
+    
+    <!-- favicon <dev elgene -->
+    <link rel="icon" href="{% static 'elgene.png' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+</head>
+<body id="data-container">
+
+<div class="main-container">
+
+        <div class="account-icon" id="account-dropdown">
+            <i class="fas fa-user"></i>
+            {{ request.user.username }}
+            <div class="dropdown-content">
+                <a href="#" id="setting" onclick="openUsernamePasswordModal()">Setting</a>
+                <a href="#" id="exportButton">Export Data</a>
+                <a href="{% url 'show' %}" id="manage" >Manage Staff</a>
+                <a href="{% url 'showdepartment' %}" id="manage" >Manage Department</a>
+                <a href="{% url 'logout' %}" id="logout">Logout</a>
+            </div>
+        </div>
+        <!-- <dev elgene> -->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Change Username or Password</h2>
+                <p>Select an option to continue:</p>
+                <button id="changeUsername" onclick="openChangeUsernameModal()">Change Username</button>
+                <button id="changePassword" onclick="openChangePasswordModal()">Change Password</button>
+            </div>
+        </div>
+        <div id="changeUsernameModal" class="modal2">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Change Username</h2>
+                <p>Enter your current username and password:</p>
+                <input type="text" id="currentUsername" placeholder="Current Username" required>
+                <input type="password" id="currentPassword" placeholder="Current Password" required>
+                <p>Enter your new username:</p>
+                <input type="text" id="newUsername" placeholder="New Username" required>
+                <button id="saveUsername" onclick="saveUsername()">Save</button>
+            </div>
+        </div>
+        <div id="changePasswordModal" class="modal2">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Change Password</h2>
+                <p>Enter your current username and password:</p>
+                <input type="text" id="currentUsername1" placeholder="Current Username" required>
+                <input type="password" id="currentPassword1" placeholder="Current Password" required>
+                <p>Enter your new password:</p>
+                <input type="password" id="newPassword" placeholder="New Password" required>
+                <button id="savePassword" onclick="savePassword()">Save</button>
+            </div>
+        </div>
+
+        <!-- JavaScript code <dev elgene> -->
+        <script>
+            function openUsernamePasswordModal() {
+                var modal = document.getElementById("myModal");
+                var close = document.getElementsByClassName("close")[0];
+
+                modal.style.display = "block";
+
+                close.onclick = function() {
+                    modal.style.display = "none";
+                }
+            }
+
+            function openChangeUsernameModal() {
+                var modal1 = document.getElementById("changeUsernameModal");
+                var close1 = document.getElementsByClassName("close")[1];
+                var modal = document.getElementById("myModal");
+
+                modal.style.display = "none";
+                modal1.style.display = "block";
+
+                close1.onclick = function() {
+                    modal1.style.display = "none";
+                    modal.style.display = "block";
+                }
+            }
+
+            function openChangePasswordModal() {
+                var modal2 = document.getElementById("changePasswordModal");
+                var close2 = document.getElementsByClassName("close")[2];
+                var modal = document.getElementById("myModal");
+
+                modal.style.display = "none";
+                modal2.style.display = "block";
+
+                close2.onclick = function() {
+                    modal2.style.display = "none";
+                    modal.style.display = "block";
+                }
+            }
+            function saveUsername() {
+                var currentUsername = $("#currentUsername").val();
+                var newUsername = $("#newUsername").val();
+                var currentPassword = $("#currentPassword").val();
+                $.ajax({
+                    type: 'POST',
+                    url: "{% url 'change_username' %}",
+                    data: {
+                        'current_username': currentUsername,
+                        'new_username': newUsername,
+                        'current_password': currentPassword,
+                        'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            alert('Username successfully changed');
+                        } else {
+                            alert('Error: ' + response.error);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Error: ' + error);
+                    }
+                });
+            }
+            // <dev elgene>
+            function savePassword() {
+                var currentUsername = $("#currentUsername1").val();
+                var currentPassword = $("#currentPassword1").val(); // Updated the ID
+                var newPassword = $("#newPassword").val();
+
+
+                $.ajax({
+                    type: 'POST',
+                    url: "{% url 'change_password' %}",
+                    data: {
+                        'current_username': currentUsername,
+                        'current_password': currentPassword,
+                        'new_password': newPassword,
+                        'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+                    },
+                    success: function (response) {
+                        if (response.success) {
+                            alert('Password successfully changed');
+                        } else {
+                            // Display the error message received from the server
+                            alert('Error: ' + JSON.stringify(response.error));
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Error: ' + error);
+                    }
+                });
+            }
+        </script>
+
+    <div class="center-text">
+        <h1>Admin Dashboard</h1>
+    </div>
+
+
+    <!--filtering tools <dev elgene>-->
+    <form class="tools">
+        {% csrf_token %}
+        <div class="select-staff-container" id="AdminDashboard">
+            <!-- Staff filter -->
+            <select class="each-DEpartment" id="eachDepartment" name="eachDepartment">
+                <option value="">Over All Evaluation</option>
+                {% for department in department_names %}
+                    <option value="{{ department.id }}" {% if department.id|stringformat:"s" == selected_department_id %}selected{% endif %}>{{ department.name }}</option>
+                {% endfor %}
+            </select>
+            <select class="select-staff" id="attendingStaff" name="attendingStaff">
+                    <option value="">{{ selected_staff_name }}</option>
+                    {% for staff in staffs %}
+                        <option value="{{ staff.pk }}">{{ staff.name }}</option>
+                    {% endfor %}
+            </select>
+            <script>
+                $("#eachDepartment").change(function () {
+                    const url = "{% url 'ajax_load_staffs' %}";
+                    const departmentId = $(this).val();
+
+                    if (departmentId === '') {
+                        // Clear the content of the "attendingStaff" dropdown when "CCAT Over All" is selected
+                        $("#attendingStaff").html('<option value="">None</option>');
+                    } else {
+                        $.ajax({
+                            url: url,
+                            data: {
+                                'department_id': departmentId
+                            },
+                            success: function (data) {
+                                $("#attendingStaff").html(data);
+                            }
+                        });
+                    }
+                });
+            </script>
+        </div>
+        <!-- Date filter -->
+        <div class="date-filter">
+            <label for="start-date">From:</label>
+            <input type="date" id="start-date" name="start-date" value="{{ start_date|default:'' }}">
+            <label for="end-date">To:</label>
+            <input type="date" id="end-date" name="end-date" value="{{ end_date|default:'' }}">
+        </div>
+        <button type="button" id="fetchDataButton" onclick="handleButtonClick()">Over All Analysis</button>
+    </form>
+    <!--filtering tools <dev elgene>-->
+
+    <!-- Areas of Concern <dev elgene>-->
+    <div class="left-container">
+        <h1>Areas of Concern</h1>
+        <h2>
+            {% if selected_staff_name != "None" %}
+                {{ selected_staff_name }}
+            {% else %}
+                {{ selected_department_name }}
+            {% endif %}
+        </h2>
+
+        <div class="receipt-details">
+            <div class="item">
+                A. Courtesy
+                <span>{{ average_courtesy|default_if_none:"N/A"|floatformat:2 }}%</span>
+            </div>
+            <div class="item">
+                B. Service
+            </div>
+            <div class="item">
+                <span>1. Quality</span>
+                <span>{{ average_quality|default_if_none:"N/A"|floatformat:2 }}%</span>
+            </div>
+            <div class="item">
+                <span>2. Timeliness</span>
+                <span>{{ average_timeless|default_if_none:"N/A"|floatformat:2 }}%</span>
+            </div>
+            <div class="item">
+                <span>3. Efficiency</span>
+                <span>{{ average_efficiency|default_if_none:"N/A"|floatformat:2 }}%</span>
+            </div>
+            <div class="item">
+                C. Physical Condition of Office / Work Space
+            </div>
+            <div class="item">
+                <span>1. Cleanliness</span>
+                <span>{{ average_cleanliness|default_if_none:"N/A"|floatformat:2 }}%</span>
+            </div>
+            <div class="item">
+                <span>2. Comfort</span>
+                <span>{{ average_comfort|default_if_none:"N/A"|floatformat:2 }}%</span>
+            </div>
+        </div>
+
+        <div class="total">
+            <span>Total Average:</span>
+            <span>{{ total_average|default_if_none:"N/A"|floatformat:2 }}%</span>
+        </div>
+    </div>
+    <!--end of areas of concern <dev elgene>-->
+
+
+    <!--pie chart for sentiment <dev elgene>-->
+    <div class="pie-chart-container">
+        <div class="chart-title">
+            Sentiment Results <br>
+            Total Sentiments: {{ total_sentiments }}
+        </div>
+        <canvas id="sentimentPieChart"></canvas>
+    </div>
+    <!--pie chart for sentiment <dev elgene>-->
+
+    <!-- Add this where you want the chart to appear in your HTML template -->
+    <div class="departmentcount-container">
+        <h2>Department Records</h2>
+        <p>Feedback Records of Each Department</p>
+        <canvas id="departmentChart"></canvas>
+    </div>
+
+    <div class="table-container">
+        <div class="table-wrapper">
+            <table class="fl-table" id="bootstrapdatatable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Client Name</th>
+                        <th>Client Agency</th>
+                        <th>Email</th>
+                        <th>Purpose of Visit</th>
+                        <th>Date of Visit</th>
+                        <th>Concerned Department</th>
+                        <th>Attending Staff</th>
+                        <th>Courtesy</th>
+                        <th>Quality</th>
+                        <th>Timeliness</th>
+                        <th>Efficiency</th>
+                        <th>Cleanliness</th>
+                        <th>Comfort</th>
+                        <th>Comment</th>
+                        <th>Sentiment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for feedback in feedback_records %}
+                        <tr>
+                            <td>{{ feedback.id }}</td>
+                            <td>{{ feedback.name }}</td>
+                            <td>{{ feedback.agency }}</td>
+                            <td>{{ feedback.email }}</td>
+                            <td>{{ feedback.purposeOfVisit }}</td>
+                            <td>{{ feedback.dateOfVisit }}</td>
+                            <td>{{ feedback.department }}</td>
+                            <td>{{ feedback.staff }}</td>
+                            <td>{{ feedback.courtesy}}</td>
+                            <td>{{ feedback.quality}}</td>
+                            <td>{{ feedback.timeless}}</td>
+                            <td>{{ feedback.efficiency}}</td>
+                            <td>{{ feedback.cleanliness}}</td>
+                            <td>{{ feedback.comfort}}</td>
+                            <td>{{ feedback.comment }}</td>
+                            <td>{{ feedback.sentiment }}</td>
+                            <!-- Add other fields you want to display <dev elgene> -->
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="16">No records found.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Add this script at the end of your HTML file or in a <script> tag -->
+    <script>
+        // Get the data from the Django context
+        var departmentNames = {{ department_names_for_plot|safe }};
+        var positiveSentiments = {{ positive_sentiments|safe }};
+        var neutralSentiments = {{ neutral_sentiments|safe }};
+        var negativeSentiments = {{ negative_sentiments|safe }};
+        var totalRecords = {{ record_counts_for_plot|safe }};
+
+        // Prepare the data for the chart
+        var data = {
+            labels: departmentNames,
+            datasets: [{
+                label: 'Positive Sentiments',
+                data: positiveSentiments,
+                backgroundColor: 'rgba(75, 192, 192, 1)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+                stack: 'stack1'  // Specify stack name for stacking
+            }, {
+                label: 'Neutral Sentiments',
+                data: neutralSentiments,
+                backgroundColor: 'rgba(255, 206, 86, 1)',
+                borderColor: 'rgba(255, 206, 86, 1)',
+                borderWidth: 1,
+                stack: 'stack1'
+            }, {
+                label: 'Negative Sentiments',
+                data: negativeSentiments,
+                backgroundColor: 'rgba(255, 99, 132, 1)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1,
+                stack: 'stack1'
+            }]
+        };
+
+        // Get the canvas element
+        var ctx = document.getElementById('departmentChart').getContext('2d');
+
+        // Create the chart
+        var myBarChart = new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        stacked: true // Enable stacking for the y-axis
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                var departmentIndex = context.dataIndex;
+                                var total = totalRecords[departmentIndex];
+                                var positive = positiveSentiments[departmentIndex];
+                                var neutral = neutralSentiments[departmentIndex];
+                                var negative = negativeSentiments[departmentIndex];
+
+                                return 'Positive: ' + positive + ' | Neutral: ' + neutral + ' | Negative: ' + negative + ' | Total: ' + total;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+<!-- for each department record <dev elgene> -->
+<script src = "https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#bootstrapdatatable').DataTable({
+      "aLengthMenu": [[5, 10, 20, 50, -1], [5, 10, 20, 50, "All"]],
+        "iDisplayLength": 5,
+        "order": [[0, 'desc']]  // Assuming the first column is the ID column
+       }
+    );
+} );
+</script>
+<script>
+    function fetchData() {
+        var selectedDepartment = $('#eachDepartment').val();
+        var selectedStaff = $("#attendingStaff").val();
+        var startDate = $("#start-date").val();  // Get the selected start date
+        var endDate = $("#end-date").val();      // Get the selected end date
+
+        $.ajax({
+            type: "POST",
+            url: "{% url 'AdminDashboard' %}",  // Replace 'your_view_name' with the actual URL pattern name for your view
+            data: {
+                'department':selectedDepartment,
+                'attendingStaff': selectedStaff,
+                'start-date': startDate,  // Pass the selected start date
+                'end-date': endDate,      // Pass the selected end date
+                csrfmiddlewaretoken: "{{ csrf_token }}"
+            },
+            success: function(data) {
+                $("#data-container").html(data);
+            }
+        });
+    }
+
+    // handle the button text details
+    function updateButtonText() {
+        var selectedStaff = $("#attendingStaff").val();
+        var startDate = $("#start-date").val();
+        var endDate = $("#end-date").val();
+        var selectedDepartment = $('#eachDepartment').val();
+        var buttonText = "Over All Analysis";
+
+        if (selectedStaff || selectedDepartment || (startDate && endDate)) {
+            buttonText = "Custom Analysis";
+        }
+
+        $("#fetchDataButton").text(buttonText);
+    }
+
+    // Handle change event of the staff
+    $("#attendingStaff").on("change", function () {
+        updateButtonText();
+    });
+    // Handle change event of the department
+    $("#eachDepartment").on("change", function () {
+        updateButtonText();
+    });
+
+    // Handle change event of the date inputs
+    $("#start-date, #end-date").on("change", function () {
+    if ($("#start-date").val() && $("#end-date").val()) {
+        updateButtonText();
+    }
+});
+
+    function resetFilters() {
+        // Check if the attending staff dropdown has a value selected
+        if ($("#eachDepartment").val() !== "") {
+            $("#eachDepartment").val(""); // Reset the dropdown to "Over All"
+        }
+
+        // Check if the start date and end date inputs are not empty
+        if ($("#start-date").val() !== "" || $("#end-date").val() !== "") {
+            $("#start-date").val(""); // Clear the start date
+            $("#end-date").val(""); // Clear the end date
+        }
+    }
+
+    function handleButtonClick() {
+        var buttonText = $("#fetchDataButton").text();
+
+        if (buttonText === "Over All Analysis") {
+            resetFilters(); // Call resetFilters only when the button text is "Over All Analysis"
+        }
+
+        fetchData(); // Always call fetchData
+    }
+
+    var sentimentCounts = {{ sentiment_counts|safe }};
+    var sentimentLabels = Object.keys(sentimentCounts);
+    var sentimentData = Object.values(sentimentCounts);
+    var totalSentiments = sentimentData.reduce((a, b) => a + b, 0);
+    // Calculate percentages
+    var sentimentPercentages = sentimentData.map(count => ((count / totalSentiments) * 100).toFixed(2));
+    // Create labels with percentages
+    var labelsWithPercentages = sentimentLabels.map((label, index) => `${label}: ${sentimentData[index]} (${sentimentPercentages[index]}%)`);
+    var sentimentPieChartCanvas = document.getElementById('sentimentPieChart').getContext('2d');
+    var sentimentPieChart = new Chart(sentimentPieChartCanvas, {
+        type: 'pie',
+        data: {
+            labels: labelsWithPercentages, // Use the labels with percentages
+            datasets: [{
+                data: sentimentData,
+                backgroundColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 206, 86, 1)', 'rgba(255, 99, 132, 1)'],
+                borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 206, 86, 1)', 'rgba(255, 99, 132, 1)'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom',
+                    aligned: 'start',
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function (tooltipItem, data) {
+                            return data.labels[tooltipItem.index]; // Show labels with percentages in tooltips
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    function decodeHtmlEntities(text) {
+        var txt = document.createElement("textarea");
+        txt.innerHTML = text;
+        return txt.value;
+    }
+
+    // <dev elgene>
+    document.getElementById("exportButton").addEventListener("click", function() {
+        // Create a JSON object with your data
+        var data = `DEPARTMENT NAME: ${"{{selected_department_name}}"}\n` +
+        `Staff ID: ${"{{selected_staff_id}}"}\n` +
+        `Staff Name: ${"{{selected_staff_name}}"}\n` +
+        `Start Date: ${"{{start_date}}"}\n` +
+        `End Date: ${"{{end_date}}"}\n\n` +
+        `Average Courtesy: ${parseFloat("{{average_courtesy}}").toFixed(2)}\n` +
+        `Average Quality: ${parseFloat("{{average_quality}}").toFixed(2)}\n` +
+        `Average Timeliness: ${parseFloat("{{average_timeless}}").toFixed(2)}\n` +
+        `Average Efficiency: ${parseFloat("{{average_efficiency}}").toFixed(2)}\n` +
+        `Average Cleanliness: ${parseFloat("{{average_cleanliness}}").toFixed(2)}\n` +
+        `Average Comfort: ${parseFloat("{{average_comfort}}").toFixed(2)}\n\n` +
+        `Total Average: ${parseFloat("{{total_average}}").toFixed(2)}\n` +
+        `Total Records: ${"{{total_records}}"}\n` +
+        `Positive Sentiment: ${sentimentCounts['Positive Sentiment']}\n` +
+        `Neutral Sentiment: ${sentimentCounts['Neutral Sentiment']}\n` +
+        `Negative Sentiment: ${sentimentCounts['Negative Sentiment']}\n\n`;
+
+        var departmentNames = {{ department_names_for_plot|safe }};
+        var recordCounts = {{ record_counts_for_plot|safe }};
+        var positiveSentiments = {{ positive_sentiments|safe }};
+        var negativeSentiments = {{ negative_sentiments|safe }};
+        var neutralSentiments = {{ neutral_sentiments|safe }};
+
+        console.log("Department Names:", departmentNames);
+        console.log("Record Counts:", recordCounts);
+        console.log("Positive Sentiments:", positiveSentiments);
+        console.log("Negative Sentiments:", negativeSentiments);
+        console.log("Neutral Sentiments:", neutralSentiments);
+
+        for (var i = 0; i < departmentNames.length; i++) {
+            var departmentName = departmentNames[i];
+            var recordCount = recordCounts[i];
+            var positiveSentiment = positiveSentiments[i];
+            var negativeSentiment = negativeSentiments[i];
+            var neutralSentiment = neutralSentiments[i];
+
+            data += `${departmentName}: Total Records: ${recordCount || 0}, Positive: ${positiveSentiment || 0}, Negative: ${negativeSentiment || 0}, Neutral: ${neutralSentiment || 0}\n`;
+        }
+
+        data = decodeHtmlEntities(data);
+
+        // Check and set values to "None" if they are empty strings
+        for (var key in data) {
+            if (data[key] == "") {
+                data[key] = "None";
+            }
+        }
+
+        var blob = new Blob([data], { type: "text/plain" });
+
+        // Create a link element to trigger the download
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "Evaluation_Report.txt";
+
+        // Simulate a click on the link to initiate the download
+        a.click();
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+  
+{% block title %}Edit Staff{% endblock title %}
+  
+{% block content %}
+<div class="col-md-12-edit">
+    <form method="POST" class="post-form" action="{% url 'update' employee.id %}">  
+        {% csrf_token %}  
+    <div class="container">   
+        <div class="col-12">  
+            <h1>Update Details</h1>  
+        </div> 
+        <div class="mb-3"> 
+            <label>Name:</label>  
+            <input type="text" class="form-control" name="name" id="id_name" required maxlength="100" value="{{ employee.name }}" />  
+        </div> 
+        <div class="mb-3">
+            <label for="id_department">Department:</label>
+            <select class="form-select" name="department" id="id_department" required>
+                <option value="" {% if not staff_department %}selected{% endif %}>Choose a department</option>
+                {% for department in department_names %}
+                    <option value="{{ department.id }}" {% if staff_department and staff_department.id == department.id %}selected{% endif %}>
+                        {{ department.name }}
+                    </option>
+                {% endfor %}
+            </select>            
+        </div> 
+        <div class="mb-3 button-container">
+            <span class="btn-add-new-2">
+                <a href="{% url 'show' %}" style="font-weight: normal; font-family:'Times New Roman', Times, serif; font-size: 15px;">Back</a>
+            </span>
+            <button type="submit" class="btn btn-success btn-lg" style="font-weight: normal; font-family:'Times New Roman', Times, serif; font-size: 15px;">Update</button>
+        </div>        
+    </div>  
+    </form>  
+{% endblock content %}  

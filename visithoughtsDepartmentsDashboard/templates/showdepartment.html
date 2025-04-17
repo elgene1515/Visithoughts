@@ -1,0 +1,59 @@
+{% extends "basedepartment.html" %}
+  
+{% block title %}Manage Departments{% endblock title %}
+  
+{% block content %}
+<div class="col-md-12">
+    <div class="button-container">
+        <span class="btn-add-new">
+            <a href="{% url 'AdminDashboard' %}">HOME</a>
+            <a href="{% url 'addnewdepartment' %}">Add New Department</a>
+        </span>
+    </div> 
+    <div class="table-responsive">
+        <table id="bootstrapdatatable" class="table table-striped table-bordered" width="100%">
+            <thead>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                {% for department in departments %}  
+                    <tr>  
+                        <td>{{ department.id }}</td>  
+                        <td>{{ department.name }}</td>
+                        <td>
+                            <div style="display: flex; flex-flow: row; align-items: center; justify-content: center; flex-wrap: wrap; width: 100%;">
+                                <a href="{% url 'editdepartment' department.id %}" class="btn btn-primary">Edit</a>
+                                <div style="margin: 0 2px 0 2px;">&nbsp;</div>
+                                <button class="btn btn-danger btn-confirm-action" data-toggle="modal" data-target="#deleteModal{{ department.id }}" data-url="{% url 'deletedepartment' department.id %}">Delete</button>
+                            </div>
+                        </td>
+                    </tr>  
+                    <!-- Modal -->
+                    <div class="modal fade" id="deleteModal{{ department.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete {{ department.name }}?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <a href="{% url 'deletedepartment' department.id %}" id="confirmDeleteButton" class="btn btn-danger">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Modal -->
+                {% endfor %} 
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}

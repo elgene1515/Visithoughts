@@ -1,0 +1,4 @@
+<option value="" disabled selected>Select the Attending Staff</option>
+{% for staff in staffs %}
+<option value="{{ staff.pk }}">{{ staff.name }}</option>
+{% endfor %}

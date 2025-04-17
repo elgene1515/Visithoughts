@@ -1,0 +1,261 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'CSS/Form_style.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <title>Visithoughts Feedback Form</title>
+    <!-- favicon <dev elgene -->
+    <link rel="icon" href="{% static 'elgene.png' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+</head>
+<body>
+<div class="container mt-4">
+
+    <form method="post" id="FeedbackForm" data-staffs-url="{% url 'ajax_load_staffs' %}"  class="form-horizontal" role="form">
+        {% csrf_token %}
+
+        <center>
+            <h1>Visithoughts Feedback Form</h1>
+            <br>
+            <p>
+                <italic>
+                "Please let us know how we can improve our services by giving your honest feedback. We value our stakeholders, hence,
+                your comments and suggestions will be highly appreciated."
+                </italic>
+            </p>
+        </center>
+        <br>
+        <span class="text-danger">* Required</span>
+        <br>
+        <br>
+
+        <div class="mb-3">
+            <label for="fullName" class="form-label">Enter Full Name<span class="text-danger">*</span></label>
+            {{ form.name }}
+        </div>
+
+        <div class="mb-3">
+            <label for="agency" class="form-label">Agency<span class="text-danger">*</span></label>
+            {{ form.agency }}
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email<span class="text-danger">*</span></label>
+            {{ form.email }}
+        </div>
+
+        <div class="mb-3">
+            <label for="purposeOfVisit" class="form-label">Purpose of Visit<span class="text-danger">*</span></label>
+            {{ form.purposeOfVisit }}
+        </div>
+
+        <div class="mb-3">
+            <label for="dateOfVisit" class="form-label">Date of Visit<span class="text-danger">*</span></label>
+            {{ form.dateOfVisit }}
+        </div>
+
+        <div class="mb-3">
+            <label for="concernedDepartment" class="form-label">Concerned Department<span class="text-danger">*</span></label>
+            {{ form.department }}
+        </div>
+
+        <div class="mb-3">
+            <label for="attendingStaff" class="form-label">Attending Staff<span class="text-danger">*</span></label>
+            {{ form.staff }}
+        </div>
+
+        <div class="mb-3">
+            <h1 class="subtext">Rate us using the following scale:</h1>
+            <p class="paragraph">
+                5 - Highly satisfied<br>
+                4 - Satisfied<br>
+                3 - Moderately Satisfied<br>
+                2 - Slightly Satisfied<br>
+                1 - Not Satisfied
+            </p>
+        </div>
+
+        <div class="mb-3">
+            <h1 class="subtext1"><strong>Areas of Concern:</strong></h1>
+        </div>
+
+        <div>
+            <i><b>Instruction:</b> Slide on your desired ratings<br><br></i>
+        </div>
+        
+        <div class="mb-3">
+            <h2 class="subtext1">A. Courtesy of the Attending Staff</h2>
+            <h2 class="rating-text">Courtesy<span class="text-danger">*</span></h2>
+            <div class="rating">
+                {{ form.courtesy }}
+            </div>
+            <div class="satisfactionText" style="float: right;"></div>
+        </div>
+
+        <div class="mb-3">
+            <h2 class="subtext1">B. Services</h2>
+            <h2 class="rating-text">Quality<span class="text-danger">*</span></h2>
+            <div class="rating">
+                {{ form.quality }}
+            </div>
+            <div class="satisfactionText2" style="float: right;"></div>
+        </div>
+
+        <div class="mb-3">
+            <h2 class="rating-text">Timeliness<span class="text-danger">*</span></h2>
+            <div class="rating">
+                {{ form.timeless }}
+            </div>
+            <div class="satisfactionText3" style="float: right;"></div>
+        </div>
+
+        <div class="mb-3">
+            <h2 class="rating-text">Efficiency<span class="text-danger">*</span></h2>
+            <div class="rating">
+                {{ form.efficiency }}
+            </div>
+            <div class="satisfactionText4" style="float: right;"></div>
+        </div>
+
+        <div class="mb-3">
+            <h2 class="subtext1">C. Physical condition of office/work space</h2>
+            <h2 class="rating-text">Cleanliness<span class="text-danger">*</span></h2>
+            <div class="rating">
+                {{ form.cleanliness }}
+            </div>
+            <div class="satisfactionText5" style="float: right;"></div>
+        </div>
+
+        <div class="mb-3">
+            <h2 class="rating-text">Comfort<span class="text-danger">*</span></h2>
+            <div class="rating">
+                {{ form.comfort }}
+            </div>
+            <div class="satisfactionText6" style="float: right;"></div>
+        </div>
+
+        <div class="mb-3">
+            <h2 class="subtext1">Comments/Suggestions<span class="text-danger">*</span></h2>
+            <div class="comment-box">
+                {{ form.comment }}
+            </div>
+            <p style="font-size: 13px; font-style: italic;">NOTE: Please use English only. Please Do not use metaphors.</p>
+        </div>
+
+        <div class="d-flex justify-content-center mt-4">
+            <input type="submit" class="btn-custom" value="Submit">
+        </div>
+    </form>
+
+</div>
+<script>
+    $("#id_department").change(function () {
+        const url = $("#FeedbackForm").attr("data-staffs-url");  // get the url of the `load_staffs` view
+        const departmentId = $(this).val();  // get the selected country ID from the HTML input
+                                        // <deve elgene>
+        $.ajax({                       // initialize an AJAX request
+            url: url,                    // set the url of the request (= /feedback/ajax/load-staffs/ )
+            data: {
+                'department_id': departmentId       // GET parameters
+            },
+            success: function (data) {
+                $("#id_staff").html(data);
+            }
+        });
+
+    });
+
+    $(document).ready(function() {
+        var rating1Slider = $('#Rating1');
+        var rating2Slider = $('#Rating2');
+        var rating3Slider = $('#Rating3');
+        var rating4Slider = $('#Rating4');
+        var rating5Slider = $('#Rating5');
+        var rating6Slider = $('#Rating6');
+
+        // Set the default colors and text on load
+        setDefaultSliderAppearance();
+
+        rating1Slider.on('input', function() {
+            updateSliderAppearance($(this));
+        });
+        rating2Slider.on('input', function() {
+            updateSliderAppearance($(this));
+        });
+        rating3Slider.on('input', function() {
+            updateSliderAppearance($(this));
+        });
+        rating4Slider.on('input', function() {
+            updateSliderAppearance($(this));
+        });
+        rating5Slider.on('input', function() {
+            updateSliderAppearance($(this));
+        });
+        rating6Slider.on('input', function() {
+            updateSliderAppearance($(this));
+        });
+
+        function setDefaultSliderAppearance() {
+            // Call updateSliderAppearance for each slider to set the default text
+            updateSliderAppearance(rating1Slider);
+            updateSliderAppearance(rating2Slider);
+            updateSliderAppearance(rating3Slider);
+            updateSliderAppearance(rating4Slider);
+            updateSliderAppearance(rating5Slider);
+            updateSliderAppearance(rating6Slider);
+        }
+    });
+
+    function updateSliderAppearance(slider) {
+        var value = slider.val();
+        var color = getColorForValue(value);
+        var text = getValueText(value);
+
+        slider.css('background-color', color);
+        slider.siblings('.rating-text').text(text);
+    }
+
+    function getValueText(value) {
+        switch (value) {
+            case '1':
+                return 'Not Satisfied';
+            case '2':
+                return 'Slightly Satisfied';
+            case '3':
+                return 'Moderately Satisfied';
+            case '4':
+                return 'Satisfied';
+            case '5':
+                return 'Highly Satisfied';
+            default:
+                return '';
+        }
+    }
+
+    function getColorForValue(value) {
+        switch (value) {
+            case '1':
+                return 'red';
+            case '2':
+                return 'orange';
+            case '3':
+                return '#FFD700';
+            case '4':
+                return '#76BA1B';
+            case '5':
+                return 'green';
+            default:
+                return 'transparent'; // Handle other values if needed
+        }
+    }
+</script>
+<script src="{% static 'JS\Form_script.js' %}"></script>
+</body>
+</html>

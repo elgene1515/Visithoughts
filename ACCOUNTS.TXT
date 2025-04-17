@@ -1,0 +1,34 @@
+dependencies
+pip install mysqlclient
+pip install django (4.2.7)
+pip install nltk
+
+
+username:passwords
+ComputerStudies:DepartmentOfComputerStudies!
+ArtsandSciences:nicethreetwo1
+DTeacherEducation:DepartmentOfTE
+DManagementStudies:DepartmentOfMS
+DEngineering:DepartmentOfE
+DIndustrialTechnology:DepartmentofIT
+Library:Librorers2023
+Mismis:missions2023
+Ocaoca:cocoa2023
+HumanResource:HR2023HumoidResource
+CashierCash:PashPash2023
+Accounting:akawnthings2023
+Registrar:staragis2023
+Odiodi:lodi2023
+Accreditation:Predators2023
+Gadgad:omygad2023
+Supply:wassuply2023
+Ppsspp:pspspsps2023
+Clinic:Clinicking2023
+Ebaeba:watawata2023
+ResearchandExtension:Adventurers2023
+Ojtojt:workwork2023
+Planningplan:Planado2023
+Tesda:TesdaManTesdaBoy2023
+administrator:thethethe321
+admin:elgeneReyes15
+visithoughts:ElgeneReyesAdmin

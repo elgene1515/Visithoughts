@@ -1,0 +1,307 @@
+body {
+background-color: aqua;
+margin: 20px;
+background-color: #f6fdfb;
+}
+.main-container {
+background-color: green;
+margin: 20px;
+padding: 20px;
+border-radius: 10px;
+box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+text-align: center;
+}
+.center-text{
+color: white;
+font-weight: bold;
+position: relative;
+margin-bottom: 70px;
+}
+.center-text h1{
+font-size: 60px;
+color: gold;
+font-weight: bold;
+text-shadow:  2px 2px rgb(165, 140, 0);
+}
+
+
+/*account logo */
+.account-icon {
+position: absolute;
+top: 30px;
+right: 60px;
+cursor: pointer;
+font-size: 25px; /* Adjust the font size as needed */
+z-index: 1;
+color: white;
+}
+.dropdown-content {
+display: none;
+position: absolute;
+background-color: #f9f9f9;
+min-width: 180px;
+box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.10);
+z-index: 1;
+right: 0;
+border-radius: 10px;
+}
+#account-dropdown:hover .dropdown-content {
+display: block;
+}
+.dropdown-content a {
+color: black;
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+}
+.dropdown-content a:hover {
+background-color: #f1f1f1;
+border-radius: 10px;
+}
+/* end of account logo*/
+
+
+/*staff/date/filter*/
+.tools {
+background-color: #f9f9f9;
+box-shadow: 0 10px 20px rgba(0, 0, 0, 0.10);
+border-radius: 10px;
+padding: 10px;
+height: auto;
+width: 100%;
+position: relative;
+display: flex;
+justify-content: space-between; /* Arrange items in a row with space between them */
+align-items: center; /* Center items vertically */
+}
+.select-staff-container {
+text-align: center;
+font-size: 20px;
+padding: 5px 10px;
+font-weight: bold;
+display: inline;
+}
+.date-filter {
+text-align: center;
+font-size: 20px;
+padding: 5px 10px;
+font-weight: bold;
+display: inline;
+}
+button {
+background-color: green;
+color: #fff; /* White text color */
+font-size: 1.2em; /* Adjust font size */
+padding: 10px 20px; /* Adjust padding */
+border-radius: 10px;
+box-shadow: none;
+}
+button:hover {
+background-color:rgb(90, 199, 90);
+}
+/*staff/date/filter*/
+
+
+/* AREAS OF CONCERN */
+.left-container {
+width: calc(50% - 20px);
+background-color: #f9f9f9;
+box-shadow: 0 10px 20px rgba(0, 0, 0, 0.10);
+border-radius: 10px;
+padding: 20px;
+margin: 20px 20px 20px 0;
+float: left;
+height: 400px; /* Set height to 100% */
+}
+.receipt-details {
+margin-bottom: 10px;
+font-weight: bold;
+}
+.item {
+display: flex;
+justify-content: space-between;
+margin-bottom: 5px;
+}
+.item span {
+        /* Indent the sub-items (1, 2, 3) */
+        padding-left: 20px;
+}
+.total {
+display: flex;
+justify-content: space-between;
+font-weight: bold;
+}
+/*areas of concern*/
+
+
+/* pie chart */
+.pie-chart-container {
+background-color: #f9f9f9;
+box-shadow: 0 10px 20px rgba(0, 0, 0, 0.10);
+border-radius: 10px;
+padding: 10px;
+margin: 20px 0 20px 20px;
+float: left;
+height: 400px;
+width: calc(50% - 20px);
+position: relative; /* Make sure the container is set to relative position */
+}
+#sentimentPieChart {
+width: 100%; /* Make sure the canvas fills the container */
+height: 100%; /* Make sure the canvas fills the container */
+}
+element.style {
+display: block;
+box-sizing: border-box;
+height: 380px;
+width: 500px;
+}
+.chart-title {
+position: absolute;
+top: 50%;
+right: 3%;
+transform: translate(0, -50%);
+text-align: center;
+font-size: 25px; /* Adjust the font size as needed */
+padding: 5px 10px;
+font-weight: bold;
+}
+/* pie chart */
+
+
+/*history*/
+.table-container {
+background-color: #fff;
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.10);
+padding: 15px;
+max-width: 100%;
+margin: auto;
+border-radius: 10px;
+clear: both;
+position: relative;
+overflow-x: auto;
+}
+.table-wrapper {
+max-height: 600px;
+overflow-y: auto;
+border-radius: 8px;
+margin-top: 20px;
+clear: both;
+position: relative;
+width: 100%;
+}
+.fl-table {
+border-radius: 5px;
+font-size: 12px;
+font-weight: normal;
+border: none;
+border-collapse: collapse;
+background-color: white;
+table-layout: auto; /* Allow the table to adjust column widths based on content */
+}
+.fl-table td,
+.fl-table th {
+text-align: center;
+white-space: normal;
+word-wrap: break-word;
+border-right: 1px solid #f8f8f8;
+}
+.fl-table td {
+border-right: 1px solid #f8f8f8;
+font-size: 12px;
+}
+.fl-table thead th:nth-child(odd) {
+color: #ffffff;
+background: green;
+}
+.fl-table tr:nth-child(even) {
+background: #d6d4d4;
+}
+.fl-table thead {
+position: sticky;
+top: 0;
+background: rgb(90, 199, 90);
+color: #ffffff;
+z-index: 2;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    color: white !important;
+    border: 1px solid #006400; /* Dark green */
+    background-color: #006400; /* Dark green */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #585858), color-stop(100%, #111));
+    background: -webkit-linear-gradient(top, #006400 0%, #003300 100%);
+    background: -moz-linear-gradient(top, #006400 0%, #003300 100%);
+    background: -ms-linear-gradient(top, #006400 0%, #003300 100%);
+    background: -o-linear-gradient(top, #006400 0%, #003300 100%);
+    background: linear-gradient(to bottom, #006400 0%, #003300 100%);
+}
+/*history*/
+
+/* modal */
+.modal, .modal2 {
+display: none; 
+position: fixed; 
+z-index: 3; 
+left: 0;
+top: 0;
+width: 100%; 
+height: 100%;
+overflow: hidden; 
+background-color: rgba(0,0,0, 0.4); 
+border-radius: 10px;
+}
+.modal-content {
+background-color: #fefefe;
+margin: 15% auto;
+padding: 20px;
+border: 1px solid #888;
+width: 50%;
+position: relative; /* Add this to make it relative */
+border-radius: 10px;
+}
+.close {
+color: #aaaaaa;
+position: absolute; /* Position it absolutely within the modal content */
+top: 0;
+right: 15px;
+font-size: 28px;
+font-weight: bold;
+cursor: pointer;
+}
+.close:hover,
+.close:focus {
+color: red;
+text-decoration: none;
+cursor: pointer;
+}
+.modal button{
+margin: 10px;   
+}
+/* modal */
+
+@media (max-width: 767px) {
+.main-container {
+    margin: 10px;
+}
+.left-container, .pie-chart-container, .table-container {
+    width: 100%;
+    margin: 0;   
+}
+.date-filter label {
+    margin: 0 5px;
+}
+
+.date-filter input {
+    width: auto;
+}
+.date-filter button {
+    margin: 0 5px;
+    padding: 5px 10px;
+}
+.fl-table {
+    font-size: 14px;
+}
+.chart-title{
+    top: 350px;
+}
+}

@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <!-- <link rel="stylesheet" type="text/css" href="frontstyle.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="{% static 'CSS/login.css' %}">
+    <!-- favicon <dev elgene -->
+    <link rel="icon" href="{% static 'elgene.png' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+</head>
+<body>
+    <img src="{% static 'layadiwa.png' %}" alt="Background Image" class="background-image">
+    <img src="{% static 'elgene.png' %}" alt="Logo" class="logo">
+    <div class="wrapper">
+        <span class="button-text">
+            <p>Welcome to</p>
+            <h1>VisiThoughts</h1>
+        </span>
+    </div>
+    <div class="wrapper">
+        <div class="button" id="loginButton" onclick="document.body.classList.add('active')">
+            <span class="button-style2">
+                <p>Click Me To Login</p>
+            </span>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div class="popup">
+            <div class="popup-inside">
+                <div class="backgrounds">
+                    <div class="background"></div>
+                    <div class="background background2"></div>
+                    <div class="background background3"></div>
+                    <div class="background background4"></div>
+                    <div class="background background5"></div>
+                    <div class="background background6"></div>
+                </div>
+            </div>
+            <div class="content">
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <div>
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div>
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Get the element by its ID
+        var loginButton = document.getElementById('loginButton');
+
+        // Add a click event listener to the element
+        loginButton.addEventListener('click', function() {
+            // Hide the button by setting its display property to "none"
+            loginButton.style.display = 'none';
+            // Add the 'active' class to the body (assuming this is part of your intended functionality)
+            document.body.classList.add('active');
+        });
+    </script>
+</body>
+</html>
